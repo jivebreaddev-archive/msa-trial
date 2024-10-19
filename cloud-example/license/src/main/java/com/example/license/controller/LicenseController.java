@@ -1,9 +1,10 @@
-package com.teamsimon.cloud_example.controller;
+package com.example.license.controller;
 
 import java.util.Locale;
 
-import com.teamsimon.cloud_example.model.License;
-import com.teamsimon.cloud_example.service.LicenseService;
+
+import com.example.license.model.License;
+import com.example.license.service.LicenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +27,7 @@ public class LicenseController {
 
 	@RequestMapping(value="/{licenseId}",method = RequestMethod.GET)
 	public ResponseEntity<License> getLicense(@PathVariable("organizationId") String organizationId,
-																						@PathVariable("licenseId") String licenseId) {
+											  @PathVariable("licenseId") String licenseId) {
 		
 		License license = licenseService.getLicense(licenseId, organizationId);
 		

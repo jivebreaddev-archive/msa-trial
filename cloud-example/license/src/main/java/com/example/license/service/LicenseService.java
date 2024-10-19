@@ -1,9 +1,9 @@
-package com.teamsimon.cloud_example.service;
+package com.example.license.service;
 
 import java.util.Locale;
 import java.util.Random;
 
-import com.teamsimon.cloud_example.model.License;
+import com.example.license.model.License;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;

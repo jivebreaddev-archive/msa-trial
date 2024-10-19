@@ -1,0 +1,4 @@
+rootProject.name = 'simon-park-licensing-company'
+include ':license'
+include ':license-config'
+

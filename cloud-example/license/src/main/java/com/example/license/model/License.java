@@ -1,4 +1,4 @@
-package com.teamsimon.cloud_example.model;
+package com.example.license.model;
 
 
 public class License {
