@@ -25,7 +25,7 @@ test {
 
 jib {
     from {
-        image = 'amazoncorretto:21-alpine-jdk'
+        image = 'amazoncorretto:21-alpine'
     }
     to {
         image = "jivebreaddev/license"
@@ -34,7 +34,8 @@ jib {
     container {
         creationTime = 'USE_CURRENT_TIMESTAMP'
         jvmFlags = ['-Dspring.profiles.active=prod', '-XX:+UseContainerSupport', '-Dserver.port=8080', '-Dfile.encoding=UTF-8']
-        user = 'user:usergroup'
         ports = ['8080']
+        entrypoint = ['java', '-cp', '/app/resources:/app/classes:/app/libs/*', 'com.example.license.LicenseApplication']
+
     }
 }
