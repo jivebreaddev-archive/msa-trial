@@ -1,9 +1,11 @@
+
 buildscript {
 	ext {
 		springBootVersion = '3.3.4'
 		springCloudVersion = "2023.0.3"
 		springConfigVersion = '4.1.3'
 		dependencyManagement = '1.1.6'
+		jibContainerVersion = '3.4.4'
 	}
 }
 
@@ -11,6 +13,8 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version "${springBootVersion}"
 	id 'io.spring.dependency-management' version "${dependencyManagement}"
+	id 'com.google.cloud.tools.jib' version "${jibContainerVersion}" apply false
+
 }
 
 allprojects {
@@ -24,6 +28,7 @@ subprojects {
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 	apply plugin: 'groovy'
+	apply plugin: 'com.google.cloud.tools.jib'
 
 	group = 'com.yourcompany'
 	version = '1.0-SNAPSHOT'
@@ -45,13 +50,13 @@ subprojects {
 		imports {
 			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 			mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
-
 		}
 	}
 	// Make these values available to all subprojects
 	ext {
 		springBootVersion = rootProject.ext.springBootVersion
 		springCloudVersion = rootProject.ext.springCloudVersion
+		jibContainerVersion = rootProject.ext.jibContainerVersion
 	}
 }
 
@@ -89,4 +94,16 @@ project(':') { // Root project configuration
 	build {
 		dependsOn buildAll
 	}
+
+
+}
+
+task dockerDownAll(type:Exec) {
+	commandLine 'docker-compose', 'down'
+}
+
+task dockerRunAll(type:Exec) {
+	dependsOn dockerDownAll
+	dependsOn subprojects*.jibDockerBuild
+	commandLine 'docker-compose', 'up', '-d'
 }
