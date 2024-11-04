@@ -4,11 +4,14 @@ spring:
   boot:
     admin:
       context-path: /admin
+  cloud:
+    config:
+      uri: http://config-server:8071
 server:
   port: 8070
 eureka:
   instance:
-    hostname: eurekaserver
+    hostname: eureka-server
   client:
     registerWithEureka: false
     fetchRegistry: false
