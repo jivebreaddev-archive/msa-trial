@@ -8,7 +8,6 @@ spring:
       server:
         encrypt:
           enabled: false
-        bootstrap: true
         native:
           search-locations: classpath:/config  # 해당 config 폴더 하위의 설정 파일에서 저장 /src/main/resources/config
 server:

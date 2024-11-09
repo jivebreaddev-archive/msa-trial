@@ -29,7 +29,7 @@ jib {
         image = 'amazoncorretto:21-alpine'
     }
     to {
-        image = "jivebreaddev/license-config"
+        image = "jivebreaddev/spring-gateway"
         tags = ['latest']
     }
     container {

@@ -41,6 +41,22 @@ services:
       - "8080:8080"
     networks:
       - backend
+  organization:
+    image: jivebreaddev/organization:latest
+    environment:
+      PROFILE: "dev"
+      CONFIGSERVER_URI: "http://configserver:8071"
+      CONFIGSERVER_PORT: "8071"
+      DATABASESERVER_PORT: "5432"
+    depends_on:
+      database:
+        condition: service_healthy
+      config-server:
+        condition: service_started
+    ports:
+      - "8081:8081"
+    networks:
+      - backend
   eureka-server:
     image: jivebreaddev/eureka:latest
     ports:

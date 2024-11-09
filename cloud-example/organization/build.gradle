@@ -30,7 +30,7 @@ jib {
         image = 'amazoncorretto:21-alpine'
     }
     to {
-        image = "jivebreaddev/license"
+        image = "jivebreaddev/organization"
         tags = ['latest']
     }
     container {
